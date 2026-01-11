@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DSA Preparation Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- TOGGLE BUTTON -->
+<button id="toggle-btn" onclick="toggleSidebar()">☰ DSA Topics</button>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h1>📘 DSA Preparation Assistant</h1>
+    <h3>Powered by GROQ</h3>
+
+    <form method="POST">
+        <textarea id="question" name="question" placeholder="Enter Your Doubt Related To DSA" rows="2" required oninput="autoResize(this)">{{ question }}</textarea>
+        <button type="submit">Ask Groq</button>
+    </form>
+
+    {% if answer %}
+    <div class="answer">
+        <h2>Groq Answer</h2>
+        <pre>{{ answer }}</pre>
+    </div>
+    {% endif %}
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <h2>DSA Topics</h2>
+
+    {% for topic, questions in topics.items() %}
+    <details>
+        <summary>{{ topic }}</summary>
+        <ul>
+            {% for q in questions %}
+            <li>
+                <form method="POST">
+                    <input type="hidden" name="question" value="{{ q }}">
+                    <button class="link-btn">{{ q }}</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </details>
+    {% endfor %}
+</div>
+
+<!-- SIDE HANDLE (sibling of sidebar so it can move with it) -->
+<button id="sidebar-handle" class="sidebar-handle" onclick="toggleSidebar()" aria-label="Open/Close DSA topics" title="Open topics">▶</button>
+
+<!-- SCRIPT -->
+<script>
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const handle = document.getElementById("sidebar-handle");
+
+    sidebar.classList.toggle("open");
+
+    if (sidebar.classList.contains("open")) {
+        handle.innerText = '◀';
+        handle.setAttribute('title', 'Close topics');
+    } else {
+        handle.innerText = '▶';
+        handle.setAttribute('title', 'Open topics');
+    }
+}
+
+// initialize handle state based on sidebar initial class
+function autoResize(el) {
+    // Reset height to get accurate scrollHeight, then set height to content height (with cap)
+    el.style.height = 'auto';
+    const scroll = el.scrollHeight;
+    const max = 360; // max height in px
+    el.style.height = Math.min(scroll, max) + 'px';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById("sidebar");
+    const handle = document.getElementById("sidebar-handle");
+    if (sidebar.classList.contains('open')) {
+        handle.innerText = '◀';
+        handle.setAttribute('title', 'Close topics');
+    } else {
+        handle.innerText = '▶';
+        handle.setAttribute('title', 'Open topics');
+    }
+
+    // Initialize textarea size and listeners
+    const ta = document.getElementById('question');
+    if (ta) {
+        // initialize compact if empty, otherwise resize to content
+        if (ta.value && ta.value.trim()) {
+            autoResize(ta);
+        } else {
+            ta.style.height = '';
+        }
+        // shrink back to compact on blur if empty
+        ta.addEventListener('blur', () => {
+            if (!ta.value.trim()) {
+                ta.style.height = '';
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>
