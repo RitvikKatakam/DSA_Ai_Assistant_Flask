@@ -1,0 +1,72 @@
+DSA_TOPICS = {
+    "Arrays": [
+        "Explain arrays with example",
+        "Two Sum problem",
+        "Kadane’s Algorithm"
+    ],
+    "Linked List": [
+        "Singly vs Doubly Linked List",
+        "Reverse a linked list",
+        "Detect cycle in linked list"
+    ],
+    "Stack": [
+        "Stack operations",
+        "Valid Parentheses problem",
+        "Next Greater Element"
+    ],
+    "Queue": [
+        "Queue vs Deque",
+        "Implement queue using stack",
+        "Sliding Window Maximum"
+    ],
+    "Hashing": [
+        "HashMap and HashSet",
+        "Frequency counting",
+        "Two Sum using hashing"
+    ],
+    "Recursion": [
+        "Explain recursion with example",
+        "Recursion vs Iteration",
+        "Tower of Hanoi"
+    ],
+    "Binary Search": [
+        "Binary Search algorithm",
+        "Search in rotated array",
+        "First and last occurrence"
+    ],
+    "Trees": [
+        "Binary Tree vs BST",
+        "Tree traversals",
+        "Height of a binary tree"
+    ],
+    "Heaps": [
+        "Min Heap vs Max Heap",
+        "Heap sort",
+        "Top K elements"
+    ],
+    "Graphs": [
+        "BFS vs DFS",
+        "Detect cycle in graph",
+        "Dijkstra’s algorithm"
+    ],
+    "Dynamic Programming": [
+        "What is DP?",
+        "0/1 Knapsack",
+        "Longest Common Subsequence"
+    ],
+    "Greedy": [
+        "Greedy algorithm concept",
+        "Activity Selection",
+        "Fractional Knapsack"
+    ],
+    "Sorting": [
+        "Merge Sort",
+        "Quick Sort",
+        "Time complexity of sorting algorithms"
+    ],
+    "Bit Manipulation": [
+        "Basics of bit manipulation",
+        "Check if number is power of 2",
+        "Count set bits"
+    ]
+}
